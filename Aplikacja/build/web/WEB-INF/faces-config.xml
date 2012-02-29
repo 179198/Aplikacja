@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+
+<application>
+    <resource-bundle>
+        <base-name>messages</base-name>
+        <var>message</var>
+    </resource-bundle>
+</application>
+<navigation-rule>
+    <from-view-id>index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>rejestracja</from-outcome>
+            <to-view-id>rejestracja.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logowanie</from-outcome>
+            <to-view-id>zaloguj.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>news</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>rejestracja.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>news</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logowanie</from-outcome>
+            <to-view-id>zaloguj.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rejstracja</from-outcome>
+            <to-view-id>rejestacja.xhtml</to-view-id>
+        </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>zaloguj.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>news</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rejestracja</from-outcome>
+            <to-view-id>rejestracja.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logowanie</from-outcome>
+            <to-view-id>zaloguj.xhtml</to-view-id>
+        </navigation-case>
+</navigation-rule>
+<managed-bean>
+    <managed-bean-class>entity.Main</managed-bean-class>
+    <managed-bean-name>main</managed-bean-name>
+    <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+</faces-config>
