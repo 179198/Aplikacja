@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="/menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                <h:panelGrid columns="3">
+                        <h:outputText value="#{messages.login}"/>
+                        <h:inputText label="#{messages.login}" id="login" value="#{newUser.login}" required="true" requiredMessage="#{messages.required}">
+                            <f:validateLength minimum="3" maximum="15"/>
+                        </h:inputText>
+                        <h:message for="login"/>
+                        
+                        <h:outputText value="#{messages.pass}"/>
+                        <h:inputSecret label="#{messages.pass}" id="pass" value="#{newUser.password}" required="true" requiredMessage="#{messages.required}">
+                            <f:validateLength minimum="3" maximum="10"/>
+                        </h:inputSecret>
+                        <h:message for="pass"/>
+                        
+                        <h:outputText value="#{messages.email}"/>
+                        <h:inputText id="email" value="#{newUser.mail}" required="true" requiredMessage="#{messages.required}">
+                            <f:validator validatorId="email"/>
+                        </h:inputText>
+                        <h:message for="email"/>
+                        
+                        <h:outputText value="#{messages.date}"/>
+                        <h:inputText label="#{messages.date}" id="date" value="#{newUser.date}">
+                            <f:convertDateTime pattern="dd-mm-yyyy"/>
+                        </h:inputText>
+                        <h:message for="date"/>
+                        
+                        <h:outputText value="#{messages.sex}"/>
+                        <h:inputText id="sex" value="#{newUser.sex}" label="#{messages.sex}">
+                            <f:validateLength minimum="1" maximum="1"/>
+                        </h:inputText>
+                        <h:message for="sex"/>
+                        
+                        <h:selectOneRadio value="#{newUser.rule}">
+                            <f:selectItem itemValue="0" itemLabel="normal"/>
+                            <f:selectItem itemValue="1" itemLabel="moderator"/>
+                            <f:selectItem itemValue="2" itemLabel="admin"/>
+                        </h:selectOneRadio>
+                        
+                        <h:commandButton value="anuluj" immediate="true" action="news"/>
+                        <h:commandButton value="dalej" action="#{newUser.add}"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="/menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:panelGrid columns="1">
+                    <h:outputText value="#{messages.dateAdd}"/>
+                    <h:outputText value="#{main.art.date}"/>
+                    
+                    <h:outputText value="#{messages.nameArt}"/>
+                    <h:outputText value="#{main.art.name}"/>
+                    
+                    <h:outputText value="#{messages.article}"/>
+                    <h:outputText value="#{main.art.article}"/>
+                    
+                    <h:outputText value="#{messages.autor}"/>
+                    <h:outputText value="#{main.art.user.login}"/>
+        
+                </h:panelGrid>
+                    <ui:repeat value="${main.comments}" var="comment">
+                        <h:panelGrid columns="1">
+                        <h:outputText value="#{comment.date}"/>
+                        <h:outputText value="#{comment.user.login}"/>
+                        <h:outputText value="#{comment.message}"/>
+                        </h:panelGrid>
+                    </ui:repeat>
+                <h:form rendered="#{logged.logged}">
+                <h:panelGrid columns="1">
+                <h:outputText value="#{messages.addComment}"/>
+                <h:inputTextarea value="#{newComment.message}"/>
+                <h:commandButton value="#{messages.addComment}" action="#{newComment.addComment}"/>
+                </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

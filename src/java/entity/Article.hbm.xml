@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-03-06 12:48:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Article" table="article" catalog="aplikacja">
+        <id name="articleId" type="java.lang.Integer">
+            <column name="articleID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="entity.User" fetch="select">
+            <column name="userID" not-null="true" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="100" not-null="true" />
+        </property>
+        <property name="article" type="string">
+            <column name="article" length="65535" not-null="true" />
+        </property>
+        <set name="comments" inverse="true">
+            <key>
+                <column name="articleID" not-null="true" />
+            </key>
+            <one-to-many class="entity.Comment" />
+        </set>
+    </class>
+</hibernate-mapping>

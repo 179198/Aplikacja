@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <h:form>
+                    <h:commandLink><img src="image/poland_flag.png"/></h:commandLink>
+                    <h:commandLink><img src="image/english_flag.png"/></h:commandLink>
+                    <h1>#{message.logo}</h1>
+                    <center>
+                <h:commandLink value="#{message.news}" action="news"/>
+                <h:commandLink value="#{message.rejestr}" action="rejestracja"/>
+                <h:commandLink value="#{message.log}" action="logowanie"/>
+                    </center>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="#{message.imie}"/>
+                        <h:inputText id="imie" value=""/>
+                        <h:message for="imie"/>
+                        
+                        <h:outputText value="#{message.imie}"/>
+                        <h:inputText id="imi1" value=""/>
+                        <h:message for="imie"/>
+                        
+                        <h:outputText value="#{message.imie}"/>
+                        <h:inputText id="imie2" value=""/>
+                        <h:message for="imie"/>
+                        
+                        <h:outputText value="#{message.imie}"/>
+                        <h:inputText id="imie3" value=""/>
+                        <h:message for="imie"/>
+                        
+                        <h:commandButton value="anuluj"/>
+                        <h:commandButton value="dalej"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

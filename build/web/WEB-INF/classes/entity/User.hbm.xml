@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-03-06 12:48:30 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.User" table="user" catalog="aplikacja">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userID" />
+            <generator class="identity" />
+        </id>
+        <property name="login" type="string">
+            <column name="login" length="15" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="10" not-null="true" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" length="45" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="sex" type="java.lang.Character">
+            <column name="sex" length="1" />
+        </property>
+        <property name="rule" type="int">
+            <column name="rule" not-null="true" />
+        </property>
+        <set name="articles" inverse="true">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="entity.Article" />
+        </set>
+        <set name="comments" inverse="true">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="entity.Comment" />
+        </set>
+    </class>
+</hibernate-mapping>

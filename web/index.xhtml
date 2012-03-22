@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <body>
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <p id="some">a</p>
+                <ui:repeat value="#{main.allArticles}" var="art">
+                    <h:panelGrid columns="1">
+                        <h:outputText value="#{messages.dateAdd}"/>
+                        <br/>
+                        <h:outputText value="#{art.date}"/>
+                        <br/>
+                    
+                        <h:outputText value="#{messages.nameArt}"/>
+                        <br/>
+                        <h:outputText value="#{art.name}"/>
+                        <br/>
+                        
+                        <h:outputText value="#{messages.article}"/>
+                        <br/>
+                        <h:outputText value="#{art.article}"/>
+                        <br/>
+                        
+                        <h:outputText value="#{messages.autor}"/>
+                        <br/>
+                        <h:outputText value="#{art.user.login}"/>
+                        <br/>
+                        <h:form>
+                        <h:commandLink value="#{messages.more}" action="#{main.one}">
+                            <f:param name="id" value="#{art.articleId}"/>
+                        </h:commandLink>
+                        </h:form>
+                    </h:panelGrid>
+               </ui:repeat>
+                
+            </ui:define>
+
+            <ui:define name="bottom">
+            
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+        <h:form>
+                    <h:commandLink action="#{main.changeLocalePl}"><img src="image/poland_flag.png"/></h:commandLink>
+                    <h:commandLink action="#{main.changeLocaleEn}"><img src="image/english_flag.png"/></h:commandLink>
+                    <h1>#{messages.logo}</h1>
+                    <center>
+                <h:commandLink value="#{messages.news}" action="news"/>
+                <h:commandLink value="#{messages.rejestr}" action="rejestracja" rendered="#{logged.logged==false}"/>
+                <h:commandLink value="#{messages.log}" action="logowanie" rendered="#{logged.logged==false}"/>
+                <h:commandLink value="#{messages.wylog}" action="#{logged.reset}" rendered="#{logged.logged==true}"/>
+                <h:commandLink value="#{messages.changeData}" action="changeData" rendered="#{logged.logged==true}"/>
+                <h:commandLink value="#{messages.search}" action="search" rendered="#{logged.logged==true}"/>
+                <h:commandLink value="#{messages.addArticle}" action="addArticle" rendered="#{logged.moderator==true}"/>
+                <h:commandLink value="#{messages.manageUser}" action="manageUser" rendered="#{logged.admin==true}"/>
+                <h:commandLink value="#{messages.addUser}" action="addUser" rendered="#{logged.admin==true}"/>
+                <h:commandLink value="#{messages.kontakt}" action="kontakt"/>
+             
+                    </center>
+         </h:form>
+</ui:composition>
+

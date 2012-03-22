@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:outputText value="#{messages.notExist}" rendered="#{logged.notExist}"/>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="#{messages.login}"/>
+                        <h:inputText value="#{logged.login}" id="log" label="Login">
+                            <f:validateLength minimum="3" maximum="15"/>
+                        </h:inputText>
+                        <h:message for="log"/>
+                        
+                        <h:outputText value="#{messages.pass}"/>
+                        <h:inputText value="#{logged.password}" id="pass" label="Password">
+                            <f:validateLength minimum="3" maximum="10"/>
+                        </h:inputText>
+                        <h:message for="pass"/>
+                        
+                        <h:commandButton value="#{messages.log}" action="#{logged.author}"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

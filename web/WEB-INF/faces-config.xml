@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+
+<application>
+    <locale-config>
+        <default-locale>pl</default-locale>
+        <supported-locale>en</supported-locale>
+    </locale-config>
+    <resource-bundle>
+        <base-name>messages</base-name>
+        <var>messages</var>
+    </resource-bundle>
+</application>
+
+<navigation-rule>
+        <navigation-case>
+            <from-outcome>rejestracja</from-outcome>
+            <to-view-id>/rejestracja.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logowanie</from-outcome>
+            <to-view-id>/zaloguj.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>news</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>kontakt</from-outcome>
+            <to-view-id>/kontakt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>changeData</from-outcome>
+            <to-view-id>/changeData.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addArticle</from-outcome>
+            <to-view-id>/addArticle.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>search</from-outcome>
+            <to-view-id>/search.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manageUser</from-outcome>
+            <to-view-id>/manageUser.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addUser</from-outcome>
+            <to-view-id>/addUser.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>more</from-outcome>
+            <to-view-id>/more.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editComment</from-outcome>
+            <to-view-id>/editComment.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editArticle</from-outcome>
+            <to-view-id>/editArticle.xhtml</to-view-id>
+        </navigation-case>
+</navigation-rule>
+
+<managed-bean>
+    <managed-bean-class>entity.UserHelper</managed-bean-class>
+    <managed-bean-name>userHelper</managed-bean-name>
+    <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+    <managed-bean-class>logic.Main</managed-bean-class>
+    <managed-bean-name>main</managed-bean-name>
+    <managed-bean-scope>session</managed-bean-scope>
+    <managed-property>
+        <property-name>uh</property-name>
+        <value>#{userHelper}</value>
+    </managed-property>
+</managed-bean>
+<managed-bean>
+    <managed-bean-class>logic.newUser</managed-bean-class>
+    <managed-bean-name>newUser</managed-bean-name>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+        <property-name>logged</property-name>
+        <value>#{logged}</value>
+    </managed-property>
+</managed-bean>
+<managed-bean>
+    <managed-bean-class>logic.Logged</managed-bean-class>
+    <managed-bean-name>logged</managed-bean-name>
+    <managed-bean-scope>session</managed-bean-scope>
+    <managed-property>
+        <property-name>uh</property-name>
+        <value>#{userHelper}</value>
+    </managed-property>
+</managed-bean>
+<managed-bean>
+    <managed-bean-class>logic.Art</managed-bean-class>
+    <managed-bean-name>article</managed-bean-name>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+        <property-name>logged</property-name>
+        <value>#{logged}</value>
+    </managed-property>
+    <managed-property>
+        <property-name>uh</property-name>
+        <value>#{userHelper}</value>
+    </managed-property>
+</managed-bean>
+<managed-bean>
+    <managed-bean-class>logic.newComment</managed-bean-class>
+    <managed-bean-name>newComment</managed-bean-name>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+        <property-name>uh</property-name>
+        <value>#{userHelper}</value>
+    </managed-property>
+    <managed-property>
+        <property-name>article</property-name>
+        <value>#{main.art}</value>
+    </managed-property>
+    <managed-property>
+        <property-name>logged</property-name>
+        <value>#{logged}</value>
+    </managed-property>
+</managed-bean>
+<validator>
+    <validator-class>logic.EmailValidator</validator-class>
+    <validator-id>email</validator-id>
+</validator>
+
+</faces-config>

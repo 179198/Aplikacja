@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="/menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable value="#{logged.allUser}" var="user">
+                        <h:column>
+                            <f:facet name="header">
+                            <h:outputText value="#{messages.login}"/>
+                            </f:facet>
+                            <h:outputText value="#{user.login}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                            <h:outputText value="#{messages.email}"/>
+                            </f:facet>
+                            <h:outputText value="#{user.mail}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="#{messages.comments}" action="#{logged.editComments}">
+                                <f:param name="userID" value="#{user.userId}"/>
+                            </h:commandLink>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink rendered="#{user.rule!=0}" value="#{messages.articles}" action="#{logged.editArticles}">
+                                <f:param name="userID" value="#{user.userId}"/>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="top">
+                <ui:include src="/menu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                <h:dataTable value="#{logged.comments}" var="comment">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{messages.delete}"/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{comment.delete}" onchange="submit()"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{messages.mark}"/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{comment.marked}" onchange="submit()"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{comment.message}" rendered="#{comment.marked==false}"/>
+                        <h:inputText value="#{comment.message}" rendered="#{comment.marked==true}"/>
+                    </h:column>
+                </h:dataTable>
+                    <h:commandButton value="#{messages.delete}" action="#{logged.deleteComment}"/>
+                    <h:commandButton value="#{messages.save}" action="#{logged.updateComment}"/>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
